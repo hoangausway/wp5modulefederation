@@ -3,6 +3,29 @@ const paths = require('./paths')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { ModuleFederationPlugin } = require('webpack').container
+const deps = require('../package.json').dependencies
+
+const moduleFederationPlugin = new ModuleFederationPlugin({
+  name: 'wp5modfed',
+  library: { type: 'assign', name: 'wp5modfed' },
+  filename: 'remoteEntry.js',
+  exposes: {
+    // expose each component you want
+    './Counter': './src/components/counter'
+  },
+  shared: {
+    ...deps,
+    react: {
+      singleton: true,
+      requiredVersion: deps.react
+    },
+    'react-dom': {
+      singleton: true,
+      requiredVersion: deps['react-dom']
+    }
+  }
+})
 
 // Removes/cleans build folders and unused assets when rebuilding
 const cleanWebpackPlugin = new CleanWebpackPlugin()
@@ -29,7 +52,14 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
 })
 
 // JavaScript: Use Babel to transpile JavaScript files
-const ruleJs = { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] }
+const ruleJs = {
+  test: /\.jsx?$/,
+  loader: 'babel-loader',
+  exclude: /node_modules/,
+  options: {
+    presets: ['@babel/preset-react']
+  }
+}
 
 // Styles: Inject CSS into the head with source maps
 const ruleCss = {
@@ -57,15 +87,13 @@ const rules = [ruleJs, ruleCss, ruleImg, ruleFont]
 // Where webpack looks to start building the bundle
 const entry = [paths.src + '/index.js']
 
-// Where webpack outputs the assets and bundles
-const output = {
-  path: paths.build,
-  filename: '[name].bundle.js',
-  publicPath: '/'
-}
-
 // Customize the webpack build process
-const plugins = [cleanWebpackPlugin, copyWebpackPlugin, htmlWebpackPlugin]
+const plugins = [
+  moduleFederationPlugin,
+  cleanWebpackPlugin,
+  copyWebpackPlugin,
+  htmlWebpackPlugin
+]
 
 // module exports
-module.exports = { entry, output, plugins, module: { rules } }
+module.exports = { entry, plugins, module: { rules } }

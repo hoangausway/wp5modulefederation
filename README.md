@@ -16,7 +16,7 @@ npm i
 npm start
 ```
 
-You can view the development server at `localhost:8080`.
+You can view the development server at `localhost:9001`.
 
 ### Production build
 
@@ -43,18 +43,16 @@ npm run build
 ### Babel
 
 - [`@babel/core`](https://www.npmjs.com/package/@babel/core) - Transpile ES6+ to backwards compatible JavaScript
-- [`@babel/plugin-proposal-class-properties`](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties) - Use properties directly on a class (an example Babel config)
-- [`@babel/preset-env`](https://babeljs.io/docs/en/babel-preset-env) - Smart defaults for Babel
+- [`@babel/preset-react`](https://babeljs.io/docs/en/babel-preset-react) - React
 
 ### Loaders
 
 - [`babel-loader`](https://webpack.js.org/loaders/babel-loader/) - Transpile files with Babel and webpack
-- [`node-sass`](https://github.com/sass/node-sass) - Node Sass
 - [`css-loader`](https://webpack.js.org/loaders/css-loader/) - Resolve CSS imports
 - [`style-loader`](https://webpack.js.org/loaders/style-loader/) - Inject CSS into the DOM
 
 ### Plugins
-
+- [`ModuleFederationPlugin]
 - [`clean-webpack-plugin`](https://github.com/johnagan/clean-webpack-plugin) - Remove/clean build folders
 - [`copy-webpack-plugin`](https://github.com/webpack-contrib/copy-webpack-plugin) - Copy files to build directory
 - [`html-webpack-plugin`](https://github.com/jantimon/html-webpack-plugin) - Generate HTML files from template

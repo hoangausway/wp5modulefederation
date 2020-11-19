@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`
+})
+
 const paths = require('./paths')
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common.js')
@@ -9,8 +13,8 @@ const mode = 'production'
 const devtool = false
 const output = {
   path: paths.build,
-  publicPath: '/',
-  filename: 'js/[name].[contenthash].bundle.js'
+  filename: '[name].[contenthash].bundle.js',
+  publicPath: process.env.PUBLIC_PATH
 }
 // Extracts CSS into separate files
 const miniCssExtractPlugin = new MiniCssExtractPlugin({
