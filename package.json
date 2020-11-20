@@ -12,7 +12,8 @@
   "keywords": [
     "webpack 5",
     "webpack boilerplate",
-    "module federation"
+    "module federation",
+    "micro frontend"
   ],
   "devDependencies": {
     "@babel/core": "^7.12.1",
