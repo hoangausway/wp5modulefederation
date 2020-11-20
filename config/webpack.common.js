@@ -10,20 +10,12 @@ const moduleFederationPlugin = new ModuleFederationPlugin({
   name: 'wp5modfed',
   library: { type: 'assign', name: 'wp5modfed' },
   filename: 'remoteEntry.js',
-  exposes: {
-    // expose each component you want
-    './Counter': './src/components/counter'
-  },
+  exposes: { './Counter': './src/components/counter' }, // expose each component you want
+  remotes: {}, // consume remote components
   shared: {
     ...deps,
-    react: {
-      singleton: true,
-      requiredVersion: deps.react
-    },
-    'react-dom': {
-      singleton: true,
-      requiredVersion: deps['react-dom']
-    }
+    react: { singleton: true, requiredVersion: deps.react },
+    'react-dom': { singleton: true, requiredVersion: deps['react-dom'] }
   }
 })
 
@@ -45,9 +37,9 @@ const copyWebpackPlugin = new CopyWebpackPlugin({
 
 // Generates an HTML file from a template
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
-  title: 'webpack Boilerplate',
+  title: 'Webpack 5 Module Federation',
   favicon: paths.src + '/images/favicon.png',
-  template: paths.src + '/template.html', // template file
+  template: paths.public + '/index.html', // template file
   filename: 'index.html' // output file
 })
 

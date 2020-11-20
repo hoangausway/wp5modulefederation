@@ -27,7 +27,7 @@ const devtool = 'inline-source-map'
 // Spin up a server for quick development
 const devServer = {
   port: process.env.PORT,
-  contentBase: paths.build,
+  contentBase: paths.public,
   open: true,
   compress: true,
   hot: true,
