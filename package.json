@@ -1,18 +1,18 @@
 {
-  "name": "wp5-modfed",
+  "name": "wp5modulefederation",
   "version": "2.0.0",
-  "description": "Sensible webpack 5 boilerplate using Babel and PostCSS with a hot dev server and an optimized production build.",
+  "description": "Boilerplate with Module Federation",
   "main": "index.js",
-  "author": "Tania Rascia",
+  "author": "Hoang Nguyen",
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js"
   },
   "keywords": [
-    "webpack",
     "webpack 5",
-    "webpack boilerplate"
+    "webpack boilerplate",
+    "module federation"
   ],
   "devDependencies": {
     "@babel/core": "^7.12.1",
