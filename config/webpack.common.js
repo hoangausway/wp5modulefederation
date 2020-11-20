@@ -39,7 +39,7 @@ const copyWebpackPlugin = new CopyWebpackPlugin({
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
   title: 'Webpack 5 Module Federation',
   favicon: paths.src + '/images/favicon.png',
-  template: paths.public + '/index.html', // template file
+  template: paths.src + '/template.html', // template file
   filename: 'index.html' // output file
 })
 
